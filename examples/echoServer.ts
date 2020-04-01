@@ -3,7 +3,7 @@ import {
   cyan,
   bold,
   yellow
-} from "https://deno.land/std@v0.36.0/fmt/colors.ts";
+} from "https://deno.land/std@v0.38.0/fmt/colors.ts";
 
 import { Application } from "../mod.ts";
 
@@ -15,8 +15,8 @@ app.use(async (ctx, next) => {
   const rt = ctx.response.headers.get("X-Response-Time");
   console.log(
     `${green(ctx.request.method)} ${cyan(ctx.request.url)} - ${bold(
-      String(rt)
-    )}`
+      String(rt),
+    )}`,
   );
 });
 
@@ -27,7 +27,7 @@ app.use(async (ctx, next) => {
   ctx.response.headers.set("X-Response-Time", `${ms}ms`);
 });
 
-app.use(async ctx => {
+app.use(async (ctx) => {
   if (ctx.request.hasBody) {
     const body = await ctx.request.body();
     let requestText: string;

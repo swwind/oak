@@ -204,7 +204,7 @@ export class Router<S extends {} = { [key: string]: any; }> {
       "OPTIONS",
       "PATCH",
       "POST",
-      "PUT"
+      "PUT",
     ];
     if (options.prefix) this._prefix = options.prefix;
   }
@@ -222,7 +222,7 @@ export class Router<S extends {} = { [key: string]: any; }> {
       "DELETE",
       "GET",
       "POST",
-      "PUT"
+      "PUT",
     );
   }
 
@@ -371,7 +371,7 @@ export class Router<S extends {} = { [key: string]: any; }> {
         context,
         contextRoutesMatched
           ? [...contextRoutesMatched, ...routesMatched]
-          : routesMatched
+          : routesMatched,
       );
 
       context.router = this;

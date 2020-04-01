@@ -74,7 +74,7 @@ function toUTCString(value: number): string {
 export async function send(
   { request, response }: Context,
   path: string,
-  options: SendOptions = { root: "" }
+  options: SendOptions = { root: "" },
 ): Promise<string | undefined> {
   const {
     brotli = true,
@@ -85,7 +85,7 @@ export async function send(
     hidden = false,
     immutable = false,
     maxage = 0,
-    root
+    root,
   } = options;
   const trailingSlash = path[path.length - 1] === "/";
   path = decodeComponent(path.substr(parse(path).root.length));
@@ -151,7 +151,7 @@ export async function send(
     throw createHttpError(500, err.message);
   }
 
-  response.headers.set("Content-Length", String(stats.len));
+  response.headers.set("Content-Length", String(stats.size));
   if (!response.headers.has("Last-Modified") && stats.modified) {
     response.headers.set("Last-Modified", toUTCString(stats.modified));
   }
